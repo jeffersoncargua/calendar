@@ -1,24 +1,36 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { Header, Footer} from './components';
+import { AllRoutes } from './routes/AllRoutes';
+
 import './App.css';
 
 function App() {
+
+  const [calendario, setCalendario] = useState([]);
+  const [tasks, setTasks] = useState([]);
+
+
+  const monthList = [
+    {id:1 , mes:'Enero'},
+    {id:2 , mes:'Febrero'},
+    {id:3 , mes:'Marzo'},
+    {id:4 , mes:'Abril'},
+    {id:5 , mes:'Mayo'},
+    {id:6 , mes:'Junio'},
+    {id:7 , mes:'Julio'},
+    {id:8 , mes:'Agosto'},
+    {id:9 , mes:'Septiembre'},
+    {id:10 , mes:'Octubre'},
+    {id:11 , mes:'Noviembre'},
+    {id:12 , mes:'Diciembre'},
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className='App'>
+      <Header />
+      <AllRoutes monthList={monthList} calendario={calendario} setCalendario={setCalendario} tasks={tasks} setTasks={setTasks} />
+      <Footer />
+    </div>    
   );
 }
 

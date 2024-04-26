@@ -1,0 +1,32 @@
+header{
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+header .navigation .navBar img{
+    width: 40px;
+}
+
+.navigation{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid darkgray;
+    width: 1028px;
+    min-width: 400px;
+    background-color: darkseagreen;
+    align-items: center;
+    padding: 10px 10px;
+    box-shadow: 0px 2px 3px 0px darkgreen;
+    border-radius: 20px;
+}
+
+.navBar{
+    display: flex;
+    align-items: center;
+}
+
+.navBar a{
+    font-size: 22px;
+    font-weight: 600;
+}

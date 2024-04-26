@@ -1,0 +1,27 @@
+.taskform{
+    margin: 40px 10px;
+    padding: 10px 30px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 1px 2px rgba(128, 128, 128, 0.12), 0px 0px 1px 1px rgba(128, 128, 128, 0.8);
+}
+
+.taskform h1,form{
+    margin: 20px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.taskform form input{
+    margin-right: 10px;
+    font-size: 18px;
+    width: 50%;
+}
+
+.taskform form button{
+    font-size: 15px;
+    padding: 5px 30px;
+    background-color: green;
+    border-radius: 5px;
+    cursor: pointer;
+    color: azure;
+}
