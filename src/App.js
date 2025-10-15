@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     setCalendario([...calendario, mes]);
-  },[mes])
+  },[mes, calendario])
 
   const monthList = [
     {id:1 , mes:'Enero'},
