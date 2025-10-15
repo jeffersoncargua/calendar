@@ -29,7 +29,7 @@ export const Home = ({monthList, calendario,tasks, mes,setMes, setDia, id, setId
       }else{
         setTitle(month.mes);
         let valor = Number(mesRef.current.value)-1;
-        setDia(new Date(2024,valor)); /*Permite obtener la fecha del primero de cada mes */
+        setDia(new Date(2025,valor)); /*Permite obtener la fecha del primero de cada mes */
       }
     }else{
       setTitle('');
