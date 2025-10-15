@@ -1,43 +1,48 @@
-import { useEffect,useRef, useState } from 'react';
+import { useEffect,useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {calendarFill} from '../functions/calendarFill';
 import { TaskCard } from '../components/';
 
-import Calendar from '../assets/Calendario-10.gif';
+import Calendar from '../assets/calendar.gif';
 import './styles/Home.css';
 
-export const Home = ({monthList, calendario, setCalendario,tasks, setTasks}) => {
+export const Home = ({monthList, calendario,tasks, mes,setMes, setDia, id, setId, title, setTitle}) => {
 
-  const [title, setTitle] = useState('');
-  const [dia, setDia] = useState(new Date(2024,0));
   const mesRef = useRef();
   const navigate = useNavigate();
 
   useEffect(() => {
-    /*Esta funcion permite rellenar el calendario en una array que luego lo pasa al array calendario */
-    setCalendario(calendarFill(dia,mesRef.current.value));
-  },[dia,mesRef,setCalendario])
+    /*Esta funcion permite rellenar el calendario en una array que luego lo pasa al array calendario */     
+    const arrayCalendar= calendarFill(id); 
+    setMes({id:Number(id),dias:arrayCalendar});
+  },[id,setMes])
+
   
   const handleMes = () => {
-    const id = mesRef.current.value;
-    const month = monthList.find( month => month.id === Number(id)); /*permite obtener el mes del array monthlist */
-    if (month) {
-      setTitle(month.mes);   
-      setDia(new Date(2024,Number(mesRef.current.value)-1)); /*Permite obtener la fecha del primero de cada mes */
+    setId(Number(mesRef.current.value));
+    const month = monthList.find( month => month.id === Number(mesRef.current.value)); /*permite obtener el mes del array monthlist */
+    const isInCalendar = calendario.find( mesItem => mesItem.id === Number(mesRef.current.value) );
+    if(month){
+      if(isInCalendar){
+        setMes(isInCalendar);
+        setTitle(month.mes);
+      }else{
+        setTitle(month.mes);
+        let valor = Number(mesRef.current.value)-1;
+        setDia(new Date(2024,valor)); /*Permite obtener la fecha del primero de cada mes */
+      }
     }else{
       setTitle('');
-      setCalendario([]);
-    }    
+      setMes({});
+    }
   } 
-
-  //console.log(calendario);
 
   return (
     <main>
         <section className='heading'>
           <h1>{title || 'Mes'}</h1>
           <img src={Calendar} alt="calendario" />
-          <select onChange={() => handleMes()} name="month" id="month" ref={mesRef} >
+          <select onChange={() => handleMes()} name="month" id="month" ref={mesRef} defaultValue={id || 'null'} >
             <option value="null"> ---Seleccione Mes---</option>
             { monthList && monthList.map((month,index)=>(
               <option key={index} value={month.id}>{month.mes}</option>
@@ -60,11 +65,20 @@ export const Home = ({monthList, calendario, setCalendario,tasks, setTasks}) => 
             </thead>            
           </table>
           <div className="tasks">
-            {calendario && calendario.map((dia,index)=>(
-                <TaskCard key={index} dia={dia}>
-                  <span onClick={() => navigate(`task/${dia}/${mesRef.current.value}`)} title='Agregar tarea?'>
-                  <h1>{dia}</h1> 
-                  </span> 
+            {mes.dias && mes.dias.map((dia,index)=>(
+                <TaskCard key={index}>
+                  <span onClick={() => navigate(`task/${dia}/${mesRef.current.value}`)} title='Agregar tareas'>
+                    <h1>{dia}</h1> 
+                  </span>
+                  {dia!==null && tasks.find( task => Number(task.mes) === mes.id && Number(task.dia) === dia) ? 
+                    (
+                      <span title='Tienes tareas pendientes'><i className="bi bi-star-fill pending"></i></span>
+                    )
+                    :
+                    (
+                      dia!==null && <span title='No tienes tareas pendientes'><i className="bi bi-star-fill assigmentTask"></i></span>
+                    )
+                  }
                 </TaskCard>                
             ))}
           </div>

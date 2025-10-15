@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect,useState } from 'react';
 import { Header, Footer} from './components';
 import { AllRoutes } from './routes/AllRoutes';
 
@@ -8,7 +8,13 @@ function App() {
 
   const [calendario, setCalendario] = useState([]);
   const [tasks, setTasks] = useState([]);
+  const [mes, setMes] = useState({});
+  const [dia, setDia] = useState(new Date(2024,0));
+  const [id, setId] = useState();
 
+  useEffect(() => {
+    setCalendario([...calendario, mes]);
+  },[mes])
 
   const monthList = [
     {id:1 , mes:'Enero'},
@@ -28,7 +34,7 @@ function App() {
   return (
     <div className='App'>
       <Header />
-      <AllRoutes monthList={monthList} calendario={calendario} setCalendario={setCalendario} tasks={tasks} setTasks={setTasks} />
+      <AllRoutes monthList={monthList} calendario={calendario} setCalendario={setCalendario} tasks={tasks} setTasks={setTasks} mes={mes} setMes={setMes} dia={dia} setDia={setDia} id={id} setId={setId} />
       <Footer />
     </div>    
   );

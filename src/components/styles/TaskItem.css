@@ -5,10 +5,16 @@
     box-shadow: 0px 0px 1px 2px rgba(128, 128, 128, 0.12), 0px 0px 1px 1px rgba(128, 128, 128, 0.8);
 }
 
+.taskItem h1{
+    margin-top: 20px;
+}
+
 .task{
+    margin-top: 20px;
     display: grid;
     grid-template-columns: 2fr 1fr 2fr 1fr;
     align-items: center;
+    border-bottom: 1px solid darkgray;
 }
 
 .task p {
@@ -16,10 +22,11 @@
 }
 
 .infoTasks .taskcard{
-    margin-top: 40px;
+    margin-top: 20px;
     display: grid;
     grid-template-columns: 2fr 1fr 2fr 1fr;
     align-items: center;
+    border-bottom: 1px solid darkgray;
 }
 
 .btnDelete{
@@ -35,8 +42,8 @@
 }
 
 .btnAdd{
-    color: rgba(255, 255, 0, 0.65);
-    font-size: 30px;
+    color: rgba(9, 255, 0, 0.664);
+    font-size: 35px;
     cursor: pointer;
 }
 

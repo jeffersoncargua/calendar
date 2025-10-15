@@ -6,12 +6,9 @@ import '../components/styles/TaskForm.css';
 export const TaskForm = ({showForm, setShowForm,task, setTask, tasks , setTasks}) => {
 
     const params = useParams();
-    const taskRef = useRef('');
-
-    console.log(task);
+    const taskRef = useRef();
 
     const handleAdd = (e) => {   
-        console.log(taskRef.current.value);
         e.preventDefault(); 
         if(task.id){
             let updatedTasks = tasks.map((taskItem) => taskItem.id === task.id ? {...taskItem ,taskName: taskRef.current.value}:taskItem);

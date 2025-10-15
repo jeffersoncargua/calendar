@@ -8,6 +8,18 @@ main .heading{
 .heading img {
     display: block;
     width: 250px;
+    opacity: 1;
+}
+
+.heading select {
+    width: 50%;
+    font-size: 18px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.heading select:hover {
+    box-shadow: 1px 2px 2px darkgray;
 }
 
 .tasks{
@@ -27,4 +39,12 @@ main .heading{
 .calendarDay tr {
     display: grid;
     grid-template-columns: repeat(7,1fr);
+}
+
+.pending{
+    color: yellow;
+}
+
+.assigmentTask{
+    color: gray;
 }

@@ -3,7 +3,7 @@ import {  useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import '../components/styles/TaskItem.css';
 
-export const TaskItem = ({showForm, setShowForm,tasks,setTasks,monthList, task , setTask}) => {
+export const TaskItem = ({showForm, setShowForm,tasks,setTasks,monthList, setTask}) => {
 
   const [taskDate, setTaskDate] = useState([]);
   const [mes,setMes] = useState();
@@ -29,7 +29,6 @@ export const TaskItem = ({showForm, setShowForm,tasks,setTasks,monthList, task ,
   }
 
   const handleEdit = (taskItem) => {
-    console.log(taskItem);
     setTask(taskItem);   
     setShowForm(true);
   }
@@ -38,11 +37,10 @@ export const TaskItem = ({showForm, setShowForm,tasks,setTasks,monthList, task ,
       const updateTasks = tasks.filter(taskItem => taskItem.id !== id);
       setTasks(updateTasks);
   }
-  console.log(tasks);
 
   return (
     <div className="taskItem">
-      <h1>Task for this {mes}`s {params.dia}</h1>
+      <h1>Tasks for this {mes}`s {params.dia}</h1>
       <div className='task'>
         <p>Tasks</p>
         <p>State</p>
